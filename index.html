@@ -60,7 +60,7 @@
             border-radius: 10px;
             margin-top: 10px;
             background-color: #f0f0f0;
-            cursor: default;
+            cursor: not-allowed;
             color: #666;
         }
     </style>
@@ -93,10 +93,11 @@
 
         function copyLink() {
             const linkField = document.getElementById('linkField');
-            linkField.select();
-            linkField.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(linkField.value);
-            alert('Link copied to clipboard!');
+            navigator.clipboard.writeText(linkField.value).then(() => {
+                alert('Link copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
         }
     </script>
 </body>
