@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day</title>
+    <style>
+        body {
+            background-color: #ffc8fd;
+            font-family: 'Comic Sans MS', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff6b6b;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            background-color: #ff6b6b;
+            color: white;
+            font-size: 1.2em;
+        }
+
+        #generatedLink {
+            margin-top: 15px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        #linkField {
+            width: 80%;
+            padding: 10px;
+            font-size: 1.2em;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-top: 10px;
+            background-color: #f0f0f0;
+            cursor: default;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Your Names</h1>
+        <input type="text" id="yourName" placeholder="Your Name">
+        <input type="text" id="baeName" placeholder="Bae's Name">
+        <br>
+        <button onclick="generateLink()">Generate</button>
+        <p id="generatedLink">Share link to your bae:</p>
+        <input type="text" id="linkField" readonly>
+        <br>
+        <button onclick="copyLink()">Copy Link</button>
+    </div>
+
+    <script>
+        function generateLink() {
+            const yourName = document.getElementById('yourName').value;
+            const baeName = document.getElementById('baeName').value;
+            if (yourName && baeName) {
+                const link = `https://vt.shizuka.my.id/valentine.html?from=${encodeURIComponent(yourName)}&to=${encodeURIComponent(baeName)}`;
+                document.getElementById('linkField').value = link;
+                document.getElementById('generatedLink').style.display = 'block';
+            } else {
+                alert('Please enter both names!');
+            }
+        }
+
+        function copyLink() {
+            const linkField = document.getElementById('linkField');
+            linkField.select();
+            linkField.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(linkField.value);
+            alert('Link copied to clipboard!');
+        }
+    </script>
+</body>
+</html>

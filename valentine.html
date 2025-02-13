@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day</title>
+    <style>
+        body {
+            background-color: #ffc8fd;
+            font-family: 'Comic Sans MS', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff6b6b;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2em;
+            position: relative;
+        }
+
+        #yesBtn {
+            background-color: #97cdff;
+            color: white;
+            z-index: 2;
+        }
+
+        #noBtn {
+            background-color: #ff6b6b;
+            color: white;
+            z-index: 1;
+        }
+
+        .gif {
+            margin: 20px 0;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            color: #ff6b6b;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you be my valentine? 💝</h1>
+        <div class="gif">
+            <img src="media/VM1fcpu2bKs1e2Kdbj/200w.gif" alt="Cute gif">
+        </div>
+        <div class="buttons">
+            <button id="yesBtn">Yes!</button>
+            <button id="noBtn">No >:(</button>
+        </div>
+    </div>
+    <div class="footer">From <span id="from">Bae</span> to <span id="to">Bae</span> 💕</div>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const fromParam = urlParams.get('from');
+        const toParam = urlParams.get('to');
+
+        // Update the text if parameters exist
+        if (fromParam) document.getElementById('from').textContent = fromParam;
+        if (toParam) document.getElementById('to').textContent = toParam;
+
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const container = document.querySelector('.container');
+        let yesBtnSize = 1;
+        let noBtnSize = 1;
+
+        noBtn.addEventListener('click', () => {
+            yesBtnSize *= 1.25;
+            yesBtn.style.transform = `scale(${yesBtnSize})`;
+            noBtnSize -= 0.1;
+            noBtn.style.transform = `scale(${noBtnSize})`;
+        });
+
+        yesBtn.addEventListener('click', () => {
+            container.innerHTML = `
+                <h1>Yaaay! I love you! 💖</h1>
+                <div class="gif">
+                    <img src="https://media2.giphy.com/media/h20IwOYYJgCMbj4uaD/giphy.gif?cid=6c09b952nw00t0x7qvmj4220ti59g9te0k2r86xo5h0vir8b&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s" alt="Love gif">
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
